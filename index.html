@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<body>
 
-    <div class="card">
+    <div class="reminderCard">
         <h1>Reminders</h1>
         
         <div class="Reminders">
@@ -20,12 +19,16 @@
         <div class ="reminderInput">
             <h2>Create a new reminder:</h2>
             <input type="text" placeholder="New reminder" id="reminderInput">
-            <button id="createButton">Create Reminder</button>
+            <button id="createButton" class="createButton">Create Reminder</button>
+
+            <span>Priority:</span>
+            <button id="lowPriorityRemind" class="toggleButton">Low</button>
+            <button id="mediumPriorityRemind" class="toggleButton">Medium</button>
+            <button id="highPriorityRemind" class="toggleButton">High</button>
         </div>
 
     </div>
 
     <script type="module" src="script.js"></script>
-</body>
 </body>
 </html>

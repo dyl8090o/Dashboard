@@ -18,25 +18,25 @@ h1 {
     color: #ffffff;
 }
 
-.card {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #a0a0c0;
-}
-
 .reminderInput {
     font-size: 20px;
     margin-top: 15px;
     color: #a0a0c0;
 }
 
-.card {
+.reminderCard {
     background-color: #101F47;
+    border: 3px solid #2d3266;
     border-radius: 20px;
     padding: 25px;
     margin-bottom: 20px;
     max-width: 600px;
+    font-size: 20px;
+    color: #a0a0c0;
 }
+.reminderCard p{
+        margin-top: 6px;
+    }
 
 input {
     background-color: #0f3460;
@@ -47,6 +47,7 @@ input {
     font-size: 16px;
     width: 70%;
     margin-right: 10px;
+    margin-top: 15px;
 }
 
 input::placeholder {
@@ -64,16 +65,15 @@ button {
     transition: all 0.2s ease;
 }
 
-button:hover {
-    background-color: #c73652;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #e94560;
-}
-
 ul {
     margin-top: 0px;
     padding: 0;
 }
+
+ul p {
+        color: #7070a0;
+        margin-top: 5px;
+    }
 
 li {
     display: flex;
@@ -82,6 +82,7 @@ li {
     padding: 10px 0;
     border-bottom: 1px solid #2a2a4a;
     font-size: 16px;
+
 }
 
 li button {
@@ -96,10 +97,79 @@ li button:hover {
 }
 
 li span {
+    color: #9da1c5;
     margin-top: 3px;
 }
 
-@media (max-width: 400px) {
+span.lowPriority {
+    background-color: rgba(62, 141, 64, 0.4);
+    border-left: 4px solid #3e8d40;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+span.mediumPriority {
+    background-color: rgba(189, 152, 41, 0.4);
+    border-left: 4px solid #bd9829;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+span.highPriority {
+    background-color: rgba(194, 53, 43, 0.4);
+    border-left: 4px solid #c2352b;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+span {
+    color: #777eb6;
+    margin-top: 5px;
+}
+
+button#lowPriorityRemind {
+    background-color: #3e8d40;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button#mediumPriorityRemind {
+    background-color: #bd9829;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+button#highPriorityRemind {
+    background-color: #c2352b;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+
+.selected{
+    filter: brightness(.8);
+    transform: scale(0.96);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.3);
+}
+
+@media (hover: hover) {
+
+    button.toggleButton:hover {
+        transform: scale(1.08);
+    }
+
+    .createButton:hover {
+    background-color: #c73652;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #e94560;
+    }
+}
+
+@media (max-width: 600px) {
 
     h1 {
         font-size: 40px;
@@ -111,21 +181,30 @@ li span {
         }
     }
 
-   .reminderInput {
+    .reminderInput {
         font-size: 15px;
-        margin-top: 15px;
-        color: #a0a0c0;
+    }
 
-        input {
-            width: 100%;
-            margin-top: 10px;
-        }
+    input {
+        width: 100%;
+        margin-top: 10px;
+    }
 
-        button {
-            width: 100%;
-            margin-top: 10px;
-        }
+    button.createButton {
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 5%;
+    }
 
+    li button {
+        width: 11%;
+        margin-top: 10px;
+    }
+
+    button#lowPriorityRemind, button#mediumPriorityRemind, button#highPriorityRemind {
+        width: 25%;
+        margin-top: 10px;
+        font-size: 12px;
     }
 
 }

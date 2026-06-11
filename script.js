@@ -13,16 +13,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let selectedPriority = "none";
+
+    function checkEmpty(){
+        let list = document.getElementById("activeReminders");
+        if(list.children.length === 0){
+            console.log("No active reminders.");
+            let emptyMessage = document.createElement("p");
+            emptyMessage.textContent = "No active reminders yet.";
+            list.appendChild(emptyMessage);
+        }
+    }
+
 async function loadReminders() {
     let list = document.getElementById("activeReminders");
     list.innerHTML = "";
     const querySnapshot = await getDocs(collection(db, "reminders"));
     querySnapshot.forEach((document) => {
-        displayReminder(document.id, document.data().text);
+        displayReminder(document.id, document.data().text, document.data().priority);
     });
+    checkEmpty();
 }
 
-function displayReminder(id, text) {
+function displayReminder(id, text, priority) {
     let list = document.getElementById("activeReminders");
     let item = document.createElement("li");
     item.style.listStyleType = "none";
@@ -32,10 +45,12 @@ function displayReminder(id, text) {
     deleteButton.onclick = async function() {
         await deleteDoc(doc(db, "reminders", id));
         list.removeChild(item);
+        checkEmpty();
     };
 
     let reminderText = document.createElement("span");
     reminderText.textContent = text;
+    reminderText.classList.add(priority + "Priority");
 
     item.appendChild(deleteButton);
     item.appendChild(reminderText);
@@ -51,10 +66,45 @@ async function addReminder() {
         return;
     }
 
-    const docRef = await addDoc(collection(db, "reminders"), { text: text });
-    displayReminder(docRef.id, text);
+
+    const docRef = await addDoc(collection(db, "reminders"), { 
+        text: text,
+        priority: selectedPriority
+    });
+
+    displayReminder(docRef.id, text, selectedPriority);
+
+    let emptyMessage = document.querySelector("#activeReminders p");
+    if (emptyMessage) {
+        emptyMessage.remove();
+    }
     input.value = "";
 }
+
+    
+    document.getElementById("lowPriorityRemind").onclick = function(){
+        setPriority("low");
+    }
+
+    document.getElementById("mediumPriorityRemind").onclick = function(){
+    setPriority("medium");
+    }
+
+    document.getElementById("highPriorityRemind").onclick = function(){
+        setPriority("high");
+    }
+
+
+    function setPriority(priority) {
+        selectedPriority = priority;
+        console.log("Selected priority: " + selectedPriority);
+
+        document.getElementById("lowPriorityRemind").classList.remove("selected");
+        document.getElementById("mediumPriorityRemind").classList.remove("selected");
+        document.getElementById("highPriorityRemind").classList.remove("selected");
+
+        document.getElementById(priority + "PriorityRemind").classList.add("selected");
+    }
 
 document.getElementById("createButton").onclick = addReminder;
 
