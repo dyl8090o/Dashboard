@@ -98,3 +98,34 @@ li button:hover {
 li span {
     margin-top: 3px;
 }
+
+@media (max-width: 400px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .Reminders {
+        h2 {
+            font-size: 25px;
+        }
+    }
+
+   .reminderInput {
+        font-size: 15px;
+        margin-top: 15px;
+        color: #a0a0c0;
+
+        input {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+    }
+
+}
