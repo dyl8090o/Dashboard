@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: #07072C;
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.card {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #a0a0c0;
+}
+
+.reminderInput {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #a0a0c0;
+}
+
+.card {
+    background-color: #101F47;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+input {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 70%;
+    margin-right: 10px;
+}
+
+input::placeholder {
+    color: #7070a0;
+}
+
+button {
+    background-color: #e94560;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #c73652;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #e94560;
+}
+
+ul {
+    margin-top: 0px;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a4a;
+    font-size: 16px;
+}
+
+li button {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #060647;
+}
+
+li button:hover {
+    background-color: #e94560;
+}
+
+li span {
+    margin-top: 3px;
+}
