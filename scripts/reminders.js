@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBPN115DDQYW8Sf6Cf5utDrvmO1yz7NcxA",
@@ -14,6 +14,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let selectedPriority = "none";
+let reminderListener = null;
 
     function checkEmpty(){
         let list = document.getElementById("activeReminders");
@@ -25,10 +26,10 @@ let selectedPriority = "none";
         }
     }
 
-async function loadReminders() {
+function loadReminders() {
+    if (reminderListener) reminderListener();
     let list = document.getElementById("activeReminders");
-    list.innerHTML = "";
-    const querySnapshot = await getDocs(collection(db, "reminders"));
+    reminderListener = onSnapshot(collection(db, "reminders"), (querySnapshot) => {
 
     let reminders = [];
     querySnapshot.forEach((document) => {
@@ -38,9 +39,24 @@ async function loadReminders() {
     reminders.sort((a, b) => a.position - b.position);
 
     reminders.forEach((reminder) => {
-        displayReminder(reminder.id, reminder.text, reminder.priority);
+        let existing = list.querySelector(`li[data-id="${reminder.id}"]`);
+        if (existing) {
+            let span = existing.querySelector("span");
+            span.className = "";
+            span.classList.add(reminder.priority + "Priority");
+        } else {
+            displayReminder(reminder.id, reminder.text, reminder.priority);
+        }
+    });
+
+    list.querySelectorAll("li").forEach((item) => {
+        let exists = reminders.find(r => r.id === item.dataset.id);
+        if (!exists) {
+            item.remove();
+        }
     });
     checkEmpty();
+});
 }
 
 async function updatePositions() {
@@ -57,7 +73,6 @@ async function updatePriority(id, newPriority) {
     await updateDoc(doc(db, "reminders", id), { priority: newPriority });
     let item = document.querySelector(`#activeReminders li[data-id="${id}"] span`);
     item.className = newPriority + "Priority";
-    await Promise.all(updates);
 }
 
 function displayReminder(id, text, priority) {
@@ -112,11 +127,15 @@ function displayReminder(id, text, priority) {
 
 async function togglePriorityButtons(id) {
     let item = document.querySelector(`#activeReminders li[data-id="${id}"]`);
+    let reminder = item.querySelector("span");
     let buttons = item.querySelectorAll("button:not(:first-child)");
     buttons.forEach(button => button.classList.toggle("hidden"));
+    if(window.innerWidth < 600) {
+        reminder.classList.toggle("hidden");
+    }
 }   
 
-async function addReminder() {
+ async function addReminder() {
     let input = document.getElementById("reminderInput");
     let text = input.value;
 
@@ -138,20 +157,30 @@ async function addReminder() {
         position: position
     });
 
-    displayReminder(docRef.id, text, selectedPriority);
-    selectedPriority = "none";
-    setPriority("none");
+        document.getElementById("lowPriorityRemind").classList.remove("selected");
+        document.getElementById("mediumPriorityRemind").classList.remove("selected");
+        document.getElementById("highPriorityRemind").classList.remove("selected");
+        selectedPriority = "none";
 
 
     let emptyMessage = document.querySelector("#activeReminders p");
-    if (emptyMessage) {
-        emptyMessage.remove();
-    }
     input.value = "";
 }
 
-    
-    document.getElementById("lowPriorityRemind").onclick = function(){
+document.getElementById("remindersCollapser").onclick = function() {
+    document.querySelector(".remindersContent").classList.toggle("hidden");
+    let txt = document.getElementById("remindersCollapserTxt");
+    if (txt.style.transform === "scaleY(-1)") {
+        txt.style.transform = "";
+    } else {
+        txt.style.transform = "scaleY(-1)";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+
+        document.getElementById("lowPriorityRemind").onclick = function(){
         if(selectedPriority !== "low"){
             setPriority("low");
         } else {
@@ -175,8 +204,7 @@ async function addReminder() {
         }
     }
 
-
-    function setPriority(priority) {
+        function setPriority(priority) {
         selectedPriority = priority;
         console.log("Selected priority: " + selectedPriority);
 
@@ -184,10 +212,16 @@ async function addReminder() {
         document.getElementById("mediumPriorityRemind").classList.remove("selected");
         document.getElementById("highPriorityRemind").classList.remove("selected");
 
-        document.getElementById(priority + "PriorityRemind").classList.add("selected");
+        if(priority !== "none") {
+            document.getElementById(priority + "PriorityRemind").classList.add("selected");
+        }
     }
 
-document.addEventListener("DOMContentLoaded", function() {
+    if(document.visibilityState === "visible") {
+        loadReminders();
+    }
+
+    
     Sortable.create(document.getElementById("activeReminders"), {
         animation: 150,
         onEnd: async function() {
@@ -195,5 +229,3 @@ document.addEventListener("DOMContentLoaded", function() {
 }});});
 
 document.getElementById("createButton").onclick = addReminder;
-
-loadReminders();

@@ -16,6 +16,10 @@ body {
     display: none;
 }
 
+.collapsed{
+    max-height: 0 !important;
+}
+
 /* #region Header */
 .header {
     display: flex;
@@ -40,6 +44,10 @@ body {
 /* #endregion */
 
 /* #region Reminder */
+.remindersHeading{
+    display: flex;
+}
+
 .reminderCard h1 {
     font-size: 36px;
     margin-bottom: 12px;
@@ -52,7 +60,7 @@ body {
     color: #a0a0c0;
 }
 
-.reminderCard {
+#reminderCard {
     background-color: #101F47;
     border: 3px solid #2d3266;
     border-radius: 20px;
@@ -62,6 +70,7 @@ body {
     max-width: 600px;
     font-size: 20px;
     color: #a0a0c0;
+    transition: transform 1.2s ease;
 }
 .reminderCard p{
         margin-top: 6px;
@@ -217,6 +226,26 @@ body {
 }
 /* #endregion */
 
+/* #region Miscellaneous */
+
+button.cardCollapser{
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: -10px;
+    color: #435faa;
+    background-color: transparent;
+    font-size: 24px;
+    transform: scaleX(5);
+    padding: 0 0;
+}
+
+.cardCollapser span{
+    display: inline-block;
+    transition: transform .2s ease;
+}
+
+/* #endregion */
+
 @media (hover: hover) {
 
     /* #region ButtonReminder */
@@ -231,6 +260,17 @@ body {
     box-shadow: 0 0 5px #e94560;
     }
     /* #endregion */
+
+    /* #region Misc */
+
+    button.cardCollapser:hover{
+        transform: scale(6, 1.2);
+        margin-bottom: 10px;
+        filter: brightness(1.3);
+    }
+
+    /* #endregion */
+
 }
 
 @media (max-width: 600px) {
@@ -297,4 +337,16 @@ body {
         font-size: 10px;
     }
     /* #endregion */
+
+    /* #region Miscellaneous */
+
+button.cardCollapser{
+    margin-right: 15px;
+    margin-top: -15px;
+    font-size: 24px;
+    transform: scaleX(5);
+}
+
+/* #endregion */
+
 }

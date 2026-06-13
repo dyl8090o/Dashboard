@@ -15,9 +15,14 @@
         <a href="https://console.firebase.google.com/u/0/project/dashboard-4439b/firestore/databases/-default-/data/~2Freminders~2FTVgBJoBHlar7CbXk7H7F" id="databaseLink" class="link">Database</a>
     </div>
 
-    <div class="reminderCard">
+    <div class="reminderCard" id="reminderCard">
+
+        <div class="remindersHeading">
         <h1>Reminders</h1>
-        
+        <button class="cardCollapser" id="remindersCollapser"><span id="remindersCollapserTxt">^</span></button>
+        </div>
+
+        <div class="remindersContent">
         <div class="Reminders">
             <h2>Active reminders:</h2>
             <ul id="activeReminders"></ul>
@@ -33,10 +38,11 @@
             <button id="mediumPriorityRemind" class="toggleButton">Medium</button>
             <button id="highPriorityRemind" class="toggleButton">High</button>
         </div>
+        </div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="scripts/reminders.js"></script>
 </body>
 </html>
