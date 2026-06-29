@@ -16,10 +16,6 @@ body {
     display: none;
 }
 
-.collapsed{
-    max-height: 0 !important;
-}
-
 /* #region Header */
 .header {
     display: flex;
