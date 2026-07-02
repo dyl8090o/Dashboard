@@ -39,7 +39,9 @@ body {
 }
 /* #endregion */
 
+
 /* #region Reminder */
+
 .remindersHeading{
     display: flex;
 }
@@ -222,22 +224,129 @@ body {
 }
 /* #endregion */
 
-/* #region Miscellaneous */
+/* #region Alarm */
 
-button.cardCollapser{
-    margin-left: auto;
-    margin-right: 30px;
-    margin-top: -10px;
-    color: #435faa;
-    background-color: transparent;
-    font-size: 24px;
-    transform: scaleX(5);
-    padding: 0 0;
+.alarmHeading{
+    display: flex;
 }
 
-.cardCollapser span{
-    display: inline-block;
-    transition: transform .2s ease;
+.alarmCard h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.alarmCard .reminderInput {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #a0a0c0;
+}
+
+#alarmCard {
+    background-color: #101F47;
+    border: 3px solid #2d3266;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    font-size: 20px;
+    color: #a0a0c0;
+    transition: transform 1.2s ease;
+}
+.alarmCard p{
+        margin-top: 6px;
+    }
+
+.alarmCard input {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 70%;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.alarmCard input::placeholder {
+    color: #7070a0;
+}
+
+.alarmCard button {
+    background-color: #e94560;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.alarmCard .alarmTimeInput {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 9px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 7%;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+
+.alarmTimeInputContainer{
+    text-align: center;
+    display: flex;
+}
+
+.alarmCard #timeSeparator{
+    margin-top: 15px;
+    margin-right: 5px;
+    font-size: 28px;
+    color: #62768f;
+}
+
+.alarmCard #alarmAMPMButton {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 40px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.alarmCard li button {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #060647;
+    margin-top: 1px;
+}
+
+.alarmCard li button:hover {
+    background-color: #e94560;
+}
+
+/* #endregion */
+
+/* #region Miscellaneous */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 /* #endregion */
@@ -257,13 +366,14 @@ button.cardCollapser{
     }
     /* #endregion */
 
+    /* #region ButtonAlarm */
+    .alarmCard button.toggleButton:hover {
+        transform: scale(1.08);
+    }
+
     /* #region Misc */
 
-    button.cardCollapser:hover{
-        transform: scale(6, 1.2);
-        margin-bottom: 10px;
-        filter: brightness(1.3);
-    }
+
 
     /* #endregion */
 
@@ -336,13 +446,8 @@ button.cardCollapser{
 
     /* #region Miscellaneous */
 
-button.cardCollapser{
-    margin-right: 15px;
-    margin-top: -15px;
-    font-size: 24px;
-    transform: scaleX(5);
-}
 
-/* #endregion */
+
+    /* #endregion */
 
 }

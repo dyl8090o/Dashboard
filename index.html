@@ -5,12 +5,11 @@
     cd D:/Websites
     git init
     git add .
-    git cmomit -m "comment"
+    git commit -m "comment"
     git push
 -->
 
 <head>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Dashboard</title>
@@ -25,35 +24,69 @@
         <a href="https://console.firebase.google.com/u/0/project/dashboard-4439b/firestore/databases/-default-/data/~2Freminders~2FTVgBJoBHlar7CbXk7H7F" id="databaseLink" class="link">Database</a>
     </div>
 
+
     <div class="reminderCard" id="reminderCard">
 
         <div class="remindersHeading">
-        <h1>Reminders</h1>
-        <button class="cardCollapser" id="remindersCollapser"><span id="remindersCollapserTxt">^</span></button>
+            <h1>Reminders</h1>
         </div>
 
         <div class="remindersContent">
-        <div class="Reminders">
-            <h2>Active reminders:</h2>
-            <ul id="activeReminders"></ul>
-        </div>
 
-        <div class ="reminderInput">
-            <h2>Create a new reminder:</h2>
-            <input type="text" placeholder="New reminder" id="reminderInput">
-            <button id="createButton" class="createButton">Create Reminder</button>
+            <div class="Reminders">
+                <h2>Active Reminders:</h2>
+                <ul id="activeReminders"></ul>
+            </div>
 
-            <span>Priority:</span>
-            <button id="lowPriorityRemind" class="toggleButton">Low</button>
-            <button id="mediumPriorityRemind" class="toggleButton">Medium</button>
-            <button id="highPriorityRemind" class="toggleButton">High</button>
-        </div>
+            <div class ="reminderInput">
+                <h2>Create a new reminder:</h2>
+                <input type="text" placeholder="New reminder" id="reminderInput">
+                <button id="reminderCreateButton" class="createButton">Create Reminder</button>
+
+                <span>Priority:</span>
+                <button id="lowPriorityRemind" class="toggleButton">Low</button>
+                <button id="mediumPriorityRemind" class="toggleButton">Medium</button>
+                <button id="highPriorityRemind" class="toggleButton">High</button>
+            </div>
+
         </div>
 
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <div class="alarmCard" id="alarmCard">
+
+        <div class="alarmsHeading">
+            <h1>Alarms</h1>
+        </div>
+
+        <div class="alarmsContent">
+
+            <div class="Alarms">
+                <h2>Active Alarms</h2>
+                <ul id="activeAlarms"></ul>
+            </div>
+
+            <div class="alarmInput">
+                <h2>Create a new alarm:</h2>
+                <input type="text" placeholder="New alarm" id="alarmInput">
+                <button id="alarmCreateButton" class="createButton">Create Alarm</button>
+                <div class="alarmTimeInputContainer">
+                    <input type="number" min="1" max="12" placeholder="00" id="alarmHourInput" class="alarmTimeInput">
+                    <p id="timeSeparator">:</p>
+                    <input type="number" min="0" max="59" placeholder="00" id="alarmMinuteInput" class="alarmTimeInput">
+                    <button id="alarmAMPMButton" class="toggleButton" >AM</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/reminders.js"></script>
+    <script type="module" src="scripts/alarms.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </body>
 </html>

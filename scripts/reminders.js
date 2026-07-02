@@ -167,16 +167,6 @@ async function togglePriorityButtons(id) {
     input.value = "";
 }
 
-document.getElementById("remindersCollapser").onclick = function() {
-    document.querySelector(".remindersContent").classList.toggle("hidden");
-    let txt = document.getElementById("remindersCollapserTxt");
-    if (txt.style.transform === "scaleY(-1)") {
-        txt.style.transform = "";
-    } else {
-        txt.style.transform = "scaleY(-1)";
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
 
 
@@ -228,4 +218,4 @@ document.addEventListener("DOMContentLoaded", function() {
             await updatePositions();
 }});});
 
-document.getElementById("createButton").onclick = addReminder;
+document.getElementById("reminderCreateButton").onclick = addReminder;
