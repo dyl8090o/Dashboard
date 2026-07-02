@@ -43,7 +43,7 @@ function loadAlarms() {
             span.className = "";
             span.classList.add(alarm.time + "Time");
         } else {
-            displayAlarm(alarm.id, alarm.text, alarm.hour, alarm.minute, alarm.ampm);
+            displayAlarm(alarm.id, alarm.text, alarm.time, alarm.sinceMidnight);
         }
     });
 
@@ -57,7 +57,7 @@ function loadAlarms() {
 });
 }
 
-function displayAlarm(id, text, hour, minute, ampm) {
+function displayAlarm(id, text, time, sinceMidnight) {
     let list = document.getElementById("activeAlarms");
     let item = document.createElement("li");
     item.dataset.id = id;
@@ -73,7 +73,7 @@ function displayAlarm(id, text, hour, minute, ampm) {
     };
 
     let reminderText = document.createElement("span");
-    reminderText.textContent = hour + ":" + minute + " " + ampm + " | " + text;
+    reminderText.textContent = time + " | " + text;
 
 
     item.appendChild(deleteButton);
@@ -88,6 +88,16 @@ async function addAlarm() {
     let hour = document.getElementById("alarmHourInput").value;
     let minute = document.getElementById("alarmMinuteInput").value;
     let ampm = document.getElementById("alarmAMPMButton").textContent;
+
+    let sinceMidnight = 0;
+    if (ampm === "PM" && hour !== "12") {
+        sinceMidnight = (((parseInt(hour) + 12) * 60) + parseInt(minute));
+    } else if (ampm === "AM" && hour !== "12") {
+        sinceMidnight = ((parseInt(hour) * 60) + parseInt(minute));
+    } else if (ampm === "AM" && hour === "12") {
+        sinceMidnight = parseInt(minute);
+    }
+
 
     if (document.getElementById("alarmMinuteInput").value.length === 1) {
         minute = "0" + minute;
@@ -108,9 +118,8 @@ async function addAlarm() {
 
     const docRef = await addDoc(collection(db, "alarms"), {
         text: text,
-        hour: hour,
-        minute: minute,
-        ampm: ampm,
+        time: hour + ":" + minute + " " + ampm,
+        sinceMidnight: sinceMidnight,
         position: position
     });
 
