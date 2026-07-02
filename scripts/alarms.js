@@ -16,6 +16,10 @@ const db = getFirestore(app);
 let alarmListener = null;
 
 function checkEmpty() {
+    let emptyMessage = document.querySelector("#activeAlarms p");
+    if (emptyMessage) {
+        emptyMessage.remove();
+    }
     let list = document.getElementById("activeAlarms");
     if (list.children.length === 0) {
         let emptyMessage = document.createElement("p");
@@ -25,6 +29,7 @@ function checkEmpty() {
 }
 
 function loadAlarms() {
+
     if (alarmListener) alarmListener();
     let list = document.getElementById("activeAlarms");
     alarmListener = onSnapshot(collection(db, "alarms"), (querySnapshot) => {
@@ -121,6 +126,7 @@ async function addAlarm() {
         position: position
     });
 
+    checkEmpty();
     let emptyMessage = document.querySelector("#activeAlarms p");
     input.value = "";
     document.getElementById("alarmHourInput").value = "";
