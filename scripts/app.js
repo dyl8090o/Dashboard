@@ -37,4 +37,5 @@ async function setupNotifications() {
   }
 }
 
-setupNotifications();
+document.getElementById('enableNotifsButton').addEventListener('click', setupNotifications);
+// setupNotifications();
