@@ -12,11 +12,3 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-
-messaging.onBackgroundMessage((payload) => {
-  const { title, body } = payload.notification || {};
-  self.registration.showNotification(title || 'Dashboard', {
-    body: body || 'You have a reminder',
-    icon: 'icons/icon-192.png'
-  });
-});
