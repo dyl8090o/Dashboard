@@ -15,22 +15,26 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 async function setupNotifications() {
-  const permission = await Notification.requestPermission();
+  try {
+    const permission = await Notification.requestPermission();
+    alert('Permission: ' + permission); // TEMP debug
 
-  if (permission !== 'granted') {
-    console.log('Notification permission denied.');
-    return;
+    if (permission !== 'granted') {
+      return;
+    }
+
+    const registration = await navigator.serviceWorker.register('firebase-messaging-sw.js');
+    alert('Service worker registered'); // TEMP debug
+
+    const token = await getToken(messaging, {
+      vapidKey: 'BGwolCCPb1_zLu4HEV1mRHKzBUei-L7IquG__hxzZiLNhithe80_7VqJMqayTV7ruBxSLhgd9AFrl7X_ZSHT-Vs',
+      serviceWorkerRegistration: registration
+    });
+
+    alert('Token: ' + token);
+  } catch (err) {
+    alert('ERROR: ' + err.message); // TEMP debug — this is the important one
   }
-
-  const registration = await navigator.serviceWorker.register('firebase-messaging-sw.js');
-
-  const token = await getToken(messaging, {
-    vapidKey: 'BGwolCCPb1_zLu4HEV1mRHKzBUei-L7IquG__hxzZiLNhithe80_7VqJMqayTV7ruBxSLhgd9AFrl7X_ZSHT-Vs',
-    serviceWorkerRegistration: registration
-  });
-
-  console.log('FCM token:', token);
-  alert('Token: ' + token);
 }
 
 setupNotifications();
