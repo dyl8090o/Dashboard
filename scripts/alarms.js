@@ -40,10 +40,8 @@ function loadAlarms() {
         let existing = list.querySelector(`li[data-id="${alarm.id}"]`);
         if (existing) {
             let span = existing.querySelector("span");
-            span.className = "";
-            span.classList.add(alarm.time + "Time");
         } else {
-            displayAlarm(alarm.id, alarm.text, alarm.time, alarm.sinceMidnight);
+            displayAlarm(alarm.id, alarm.label, alarm.time, alarm.sinceMidnight);
         }
     });
 
@@ -57,7 +55,7 @@ function loadAlarms() {
 });
 }
 
-function displayAlarm(id, text, time, sinceMidnight) {
+function displayAlarm(id, label, time, sinceMidnight) {
     let list = document.getElementById("activeAlarms");
     let item = document.createElement("li");
     item.dataset.id = id;
@@ -72,19 +70,19 @@ function displayAlarm(id, text, time, sinceMidnight) {
         checkEmpty();
     };
 
-    let reminderText = document.createElement("span");
-    reminderText.textContent = time + " | " + text;
+    let reminderLabel = document.createElement("span");
+    reminderLabel.textContent = time + " | " + label;
 
 
     item.appendChild(deleteButton);
-    item.appendChild(reminderText);
+    item.appendChild(reminderLabel);
     list.appendChild(item);
 }
 
 
 async function addAlarm() {
     let input = document.getElementById("alarmInput");
-    let text = input.value;
+    let label = input.value;
     let hour = document.getElementById("alarmHourInput").value;
     let minute = document.getElementById("alarmMinuteInput").value;
     let ampm = document.getElementById("alarmAMPMButton").textContent;
@@ -103,7 +101,7 @@ async function addAlarm() {
         minute = "0" + minute;
     }
 
-    if (text === ""){
+    if (label === ""){
         alert("Please enter an alarm!");
         return;
     }
@@ -117,7 +115,7 @@ async function addAlarm() {
     let position = querySnapshot.size;
 
     const docRef = await addDoc(collection(db, "alarms"), {
-        text: text,
+        label: label,
         time: hour + ":" + minute + " " + ampm,
         sinceMidnight: sinceMidnight,
         position: position

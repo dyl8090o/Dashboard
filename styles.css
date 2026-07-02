@@ -27,13 +27,32 @@ body {
 
 .header .link {
     align-items: center;
-    font-size: 18px;
+    
     color: #2e2f81;
     margin-left: 10px;
     text-decoration: none;
 }
 
 .header .link:hover {
+    color: #545591;
+    text-decoration: none;
+}
+
+.header .linkButton {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    color: #2e2f81;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-left: 0px;
+    margin-right: -10px;
+}
+
+.header .linkButton:hover {
     color: #545591;
     text-decoration: none;
 }
@@ -381,6 +400,8 @@ input[type="number"] {
         transform: scale(1.08);
     }
 
+    /* #endregion */
+
     /* #region Misc */
 
 
@@ -452,6 +473,31 @@ input[type="number"] {
     .header .link {
         font-size: 10px;
     }
+    /* #endregion */
+
+    /* #region MobileAlarm */
+
+    .alarmCard .alarmTimeInput {
+        width: 14%;
+    }
+
+    .alarmCard .alarmTimeInputContainer{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .alarmCard input {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .alarmCard .createButton {
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 5%;
+    }
+
     /* #endregion */
 
     /* #region Miscellaneous */
