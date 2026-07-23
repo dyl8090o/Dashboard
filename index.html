@@ -93,9 +93,48 @@
     </div>
 
 
+    <div class="countdownCard" id="countdownCard">
+        <div class="countdownHeading">
+            <h1>Countdown</h1>
+        </div>
+
+        <div class="countdownContent">
+
+            <div class="Countdown">
+                <h2>Active Countdowns</h2>
+                <ul id="activeCountdowns"></ul>
+            </div>
+
+            <div class="countdownInput">
+                <h2>Create a new countdown:</h2>
+                <input type="text" placeholder="New countdown" id="countdownInput">
+                <button id="countdownCreateButton" class="createButton">Create Countdown</button>
+                <div class="countdownTimeInputContainer">
+                    <input type="number" min="0" max="12" placeholder="MM" id="countdownMonthInput" class="countdownDateInput">
+                    <p id="timeSeparator">/</p>
+                    <input type="number" min="0" max="31" placeholder="DD" id="countdownDayInput" class="countdownDateInput">
+                    <p id="timeSeparator">/</p>
+                    <input type="number" min="0" max="99" placeholder="YY" id="countdownYearInput" class="countdownDateInput">
+
+                    <div class="countdownTimeInputContainerSpace"></div>
+
+                    <input type="number" min="1" max="12" placeholder="00" id="countdownHourInput" class="countdownTimeInput">
+                    <p id="timeSeparator">:</p>
+                    <input type="number" min="0" max="59" placeholder="00" id="countdownMinuteInput" class="countdownTimeInput">
+                    <p id="timeSeparator">:</p>
+                    <input type="number" min="0" max="59" placeholder="00" id="countdownSecondInput" class="countdownTimeInput">
+                    <button id="countdownAMPMButton" class="toggleButton" >AM</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
     <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/reminders.js"></script>
     <script type="module" src="scripts/alarms.js"></script>
+    <script type="module" src="scripts/countdown.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </body>
 </html>

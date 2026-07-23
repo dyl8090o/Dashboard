@@ -284,7 +284,7 @@ body {
     padding: 10px 15px;
     color: #ffffff;
     font-size: 16px;
-    width: 70%;
+    width: 74%;
     margin-right: 10px;
     margin-top: 15px;
 }
@@ -342,6 +342,11 @@ body {
     margin-left: 5px;
 }
 
+.alarmCard ul p {
+        color: #7070a0;
+        margin-top: 5px;
+    }
+
 .alarmCard li button {
     padding: 5px 10px;
     font-size: 12px;
@@ -361,6 +366,150 @@ body {
 }
 
 .alarmCard li button:hover {
+    background-color: #e94560;
+}
+
+/* #endregion */
+
+/* #region Countdown */
+
+.countdownHeading{
+    display: flex;
+}
+
+.countdownCard h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.countdownCard .countdownInput {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #a0a0c0;
+}
+
+#countdownCard {
+    background-color: #101F47;
+    border: 3px solid #2d3266;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    font-size: 20px;
+    color: #a0a0c0;
+    transition: transform 1.2s ease;
+}
+.countdownCard p{
+        margin-top: 6px;
+    }
+
+.countdownCard input {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 67%;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.countdownCard input::placeholder {
+    color: #7070a0;
+}
+
+.countdownCard button {
+    background-color: #e94560;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.countdownCard .countdownTimeInput {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 9px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 7%;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+
+.countdownCard .countdownDateInput {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 9px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 9%;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+
+.countdownTimeInputContainer{
+    text-align: center;
+    display: flex;
+}
+
+.countdownTimeInputContainerSpace{
+    margin-right: 40px;
+}
+
+.countdownCard #timeSeparator{
+    margin-top: 15px;
+    margin-right: 5px;
+    font-size: 28px;
+    color: #62768f;
+}
+
+.countdownCard #countdownAMPMButton {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 40px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.countdownCard ul p {
+        color: #7070a0;
+        margin-top: 5px;
+    }
+
+.countdownCard li button {
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    background-color: #060647;
+    margin-top: 1px;
+}
+
+.countdownCard li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #2a2a4a;
+    font-size: 16px;
+
+}
+
+.countdownCard li button:hover {
     background-color: #e94560;
 }
 
