@@ -497,20 +497,53 @@ body {
     border-radius: 8px;
     background-color: #060647;
     margin-top: 1px;
+    flex-shrink: 0;
 }
 
 .countdownCard li {
     display: flex;
-    align-items: center;
+    align-items: left;
+    flex-direction: column;
     gap: 10px;
     padding: 10px 0;
     border-bottom: 1px solid #2a2a4a;
     font-size: 16px;
-
 }
 
 .countdownCard li button:hover {
     background-color: #e94560;
+}
+
+.countdownCard .countdownTopRow{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.countdownCard .countdownLabel{
+    margin-left: 8px;
+    margin-bottom: 5px;
+    color: #9da1c5;
+}
+
+.countdownCard .countdownBack {
+    border-radius: 3px;
+    width: 80%;
+    height: 10px;
+    margin-left: 32px;
+    background-color: #464646;
+    overflow: hidden;
+    position: relative;
+}
+
+.countdownCard .countdownBar {
+    border-radius: 3px;
+    width: 100%;
+    background-color: #32cf24;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* #endregion */
@@ -626,6 +659,7 @@ input[type="number"] {
 
     /* #region MobileAlarm */
 
+    
     .alarmCard .alarmTimeInput {
         width: 14%;
     }
@@ -646,6 +680,66 @@ input[type="number"] {
         margin-top: 10px;
         margin-left: 5%;
     }
+
+    /* #endregion */
+
+    /* #region MobileCountdown */
+
+    .countdownTimeInputContainer{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .countdownCard .countdownTimeInput {
+        background-color: #0f3460;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 9px;
+        color: #ffffff;
+        font-size: 16px;
+        width: 15%;
+        margin-right: 5px;
+        margin-top: 15px;
+    }
+
+    .countdownCard .countdownDateInput {
+        background-color: #0f3460;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 9px;
+        color: #ffffff;
+        font-size: 16px;
+        width: 19%;
+        margin-right: 5px;
+        margin-top: 15px;
+    }
+
+    #countdownMonthInput{
+        margin-left: 17px;
+    }
+
+    #countdownHourInput{
+        margin-left: -10px;
+    }
+
+    .countdownCard input {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .countdownCard .createButton {
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 5%;
+    }
+
+    .countdownCard .countdownBack {
+        width: 80%;
+    }
+
+
 
     /* #endregion */
 

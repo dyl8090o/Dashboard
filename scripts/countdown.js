@@ -45,7 +45,7 @@ function loadCountdowns() {
         if (existing) {
             let span = existing.querySelector("span");
         } else {
-            displayCountdown(countdown.id, countdown.label, countdown.time, countdown.timestamp);
+            displayCountdown(countdown.id, countdown.label, countdown.time, countdown.timestamp, countdown.timeMade);
         }
     });
 
@@ -60,7 +60,7 @@ function loadCountdowns() {
     
 }
 
-function displayCountdown(id, text, time, timestamp) {
+function displayCountdown(id, text, time, timestamp, timeMade) {
     let list = document.getElementById("activeCountdowns");
     let item = document.createElement("li");
     item.dataset.id = id;
@@ -81,14 +81,25 @@ function displayCountdown(id, text, time, timestamp) {
     deleteable = 1;
 
     let countdownLabel = document.createElement("span");
-    item.appendChild(deleteButton);
-    item.appendChild(countdownLabel);
+    countdownLabel.classList.add("countdownLabel")
+    let countdownBar = document.createElement("span")
+    countdownBar.classList.add("countdownBar")
+    let countdownBack = document.createElement("span")
+    countdownBack.classList.add("countdownBack")
+    let countdownTopRow = document.createElement("span")
+    countdownTopRow.classList.add("countdownTopRow")
+
+    countdownTopRow.appendChild(deleteButton);
+    countdownTopRow.appendChild(countdownLabel);
+    item.appendChild(countdownTopRow);
+    item.appendChild(countdownBack);
+    countdownBack.appendChild(countdownBar);
     list.appendChild(item);
 
     let intervalID = setInterval(runUpdate, 1000);
     item.dataset.intervalID = intervalID;
     function runUpdate(){
-        let expired = countdownUpdater(text, time, timestamp, countdownLabel, item, id, list);
+        let expired = countdownUpdater(text, time, timestamp, countdownLabel, item, id, list, timeMade, countdownBar);
         if (expired){
             clearInterval(intervalID);
             deleteItem();
@@ -161,12 +172,14 @@ async function addCountdown() {
     console.log("20" + year + "-" + unixMonth + "-" + unixDay + "T" + hour24 + ":" + minute + ":" + second);
     let date = new Date("20" + year + "-" + unixMonth + "-" + unixDay + "T" + hour24 + ":" + minute + ":" + second);
     let timestamp = Math.floor((date.getTime())/1000);
+    let timeMade = Math.floor(new Date().getTime()/1000)
 
     console.log(timestamp);
     const docRef = await addDoc(collection(db, "countdowns"), {
         label: label,
         time: month + "/" + day + "/" + year + " @ " + hour + ":" + minute + " " + ampm,
         timestamp: timestamp,
+        timeMade: timeMade,
         position: position
     });
 
@@ -182,9 +195,11 @@ async function addCountdown() {
     document.getElementById("countdownAMPMButton").textContent = "AM";
 }
 
-function countdownUpdater(text, time, timestamp, label, item, id, list){
+function countdownUpdater(text, time, timestamp, label, item, id, list, timeMade, bar){
     let newTimestamp = Math.floor((new Date()) / 1000)
     let timeLeft = timestamp - newTimestamp;
+    let timeLeftRatio = Math.abs(1-((newTimestamp - timeMade)/(timestamp - timeMade)));
+    //console.log("Time left: " + timeLeftRatio);
 
     let timeYears = ""
     let timeMonths = ""
@@ -247,6 +262,8 @@ function countdownUpdater(text, time, timestamp, label, item, id, list){
     }
     
     timeLeft = timeYears + " " + timeMonths + " " + timeDays + " " + timeHours + " " + timeMinutes + " " + timeSeconds;
+
+    bar.style.width = (timeLeftRatio*100) + "%";
 
     label.textContent = text + " | " + time +   " | " + timeLeft;
     return false;
