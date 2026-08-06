@@ -130,25 +130,46 @@
         </div>
     </div>
 
-    <!---
+ 
     <div class="counterCard" id="counterCard">
         <div class="counterHeading">
             <h1>Counter</h1>
         </div>
 
         <div class="counterContent">
-            <button id="counterDecreaseButton" class="counterButton">-</button>
-            <span id="counterValue">0</span>
-            <button id="counterIncreaseButton" class="counterButton">+</button>
-            <button id="counterResetButton" class="counterButton">Reset</button>
+
+            <div class="counterSaves">
+            <button id="counter1" class="counterSave">Counter 1</button>
+            <button id="counter2" class="counterSave">Counter 2</button>
+            <button id="counter3" class="counterSave">Counter 3</button>
+            </div>
+                
+            <div class="counterMain">
+            <div class="counterTopRow">
+
+                <button id="counterDecreaseButton" class="counterButton">-</button>
+
+                <div class="counterNumberCircle">
+                    <svg class="counterNumberCircleSVG" viewBox="0 0 100 100">
+                        <text x="50" y="52" dominant-baseline="middle" text-anchor="middle">
+                            <tspan id="counterNumber">Loading...</tspan>
+                        </text>
+                    </svg>
+                </div>
+
+                <button id="counterIncreaseButton" class="counterButton">+</button>
+            </div>
+            <button id="counterResetButton" class="counterResetButton">Reset</button>
+            
+            </div>
+
         </div>
-    -->
 
     <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/reminders.js"></script>
     <script type="module" src="scripts/alarms.js"></script>
     <script type="module" src="scripts/countdown.js"></script>
-    <!--<script type="module" src="scripts/counter.js"></script>-->
+    <script type="module" src="scripts/counter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </body>
 </html>

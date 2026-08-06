@@ -592,12 +592,6 @@ body {
     color: #ffffff;
 }
 
-.counterCard .counterInput {
-    font-size: 20px;
-    margin-top: 15px;
-    color: #a0a0c0;
-}
-
 #counterCard {
     background-color: #101F47;
     border: 3px solid #2d3266;
@@ -612,6 +606,97 @@ body {
 }
 .counterCard p{
     margin-top: 6px;
+}
+
+.counterCard .counterContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.counterCard .counterTopRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.counterCard .counterButton {
+    background-color: #395094;
+    border: 3px solid #1f2563;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    color: #ffffff;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.counterCard .counterNumberCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #536cb4;
+    border: 3px solid #1f2563;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.counterCard .counterNumberCircleSVG {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    font-size: 32px;
+}
+
+.counterCard .counterResetButton {
+    display: block;
+    margin: 20px auto 0;
+    width: 50%;
+    background-color: #e94560;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.counterCard .counterMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.counterCard .counterSave {
+    display: block;
+    margin: 20px auto 0;
+    background-color: #152d6d;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #64739b;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 40px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.counterCard .selected{
+    filter: brightness(1.2);
+    transform: scale(1.05);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.3);
 }
 
 /* #endregion */
@@ -648,6 +733,45 @@ input[type="number"] {
     /* #region ButtonAlarm */
     .alarmCard button.toggleButton:hover {
         transform: scale(1.08);
+    }
+
+    .alarmCard .createButton:hover {
+        background-color: #c73652;
+        transform: scale(1.05);
+        box-shadow: 0 0 5px #e94560;
+    }
+
+    /* #endregion */
+
+    /* #region ButtonCountdown */
+
+    .countdownCard button.toggleButton:hover {
+        transform: scale(1.08);
+    }
+
+    .countdownCard .createButton:hover {
+        background-color: #c73652;
+        transform: scale(1.05);
+        box-shadow: 0 0 5px #e94560;
+    }
+
+    /* #endregion */
+
+    /* #region ButtonCounter */
+
+    .counterCard .counterButton:hover {
+        background-color: #4a63b0;
+    }
+    
+    .counterCard .counterResetButton:hover {
+        background-color: #c73652;
+        transform: scale(1.05);
+        box-shadow: 0 0 5px #e94560;
+    }
+
+    .counterCard .counterSave:hover {
+        background-color: rgb(20, 39, 102);
+        transform: scale(1.05);
     }
 
     /* #endregion */
@@ -808,6 +932,48 @@ input[type="number"] {
     }
 
 
+
+    /* #endregion */
+
+    /* #region MobileCounter */
+
+.counterCard .counterTopRow {
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.counterCard .counterButton {
+    width: 70px;
+    height: 70px;
+}
+
+.counterCard .counterNumberCircle {
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+}
+
+.counterCard .counterNumberCircleSVG {
+    width: 1000%;
+    height: 120%;
+    overflow: visible;
+    font-size: 32px;
+}
+
+.counterCard .counterSave {
+        font-size: 12px;
+        display: inline-block;
+}
+
+.counterCard .counterContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counterCard .counterResetButton {
+    width: 80%;
+}
 
     /* #endregion */
 
