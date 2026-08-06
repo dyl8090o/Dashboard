@@ -48,7 +48,10 @@ async function setupNotifications() {
   }
 }
 
- document.addEventListener('touchmove', function (event) {
+
+document.addEventListener("DOMContentLoaded", function() {
+
+   document.addEventListener('touchmove', function (event) {
   if (event.scale !== 1) {
     event.preventDefault();
   }
@@ -62,6 +65,8 @@ document.addEventListener('touchend', function (event) {
     lastTouchEnd = now;
   }
 }, { passive: false });
+
+});
 
 
 document.getElementById('enableNotifsButton').addEventListener('click', setupNotifications);
