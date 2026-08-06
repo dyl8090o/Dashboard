@@ -46,7 +46,7 @@ function loadAlarms() {
         if (existing) {
             let span = existing.querySelector("span");
         } else {
-            displayAlarm(alarm.id, alarm.label, alarm.time, alarm.sinceMidnight);
+            displayAlarm(alarm.id, alarm.label, alarm.time, alarm.sinceMidnight, alarm.important, alarm.repeat);
         }
     });
 
@@ -60,13 +60,14 @@ function loadAlarms() {
 });
 }
 
-function displayAlarm(id, label, time, sinceMidnight) {
+function displayAlarm(id, label, time, sinceMidnight, important, repeat) {
     let list = document.getElementById("activeAlarms");
     let item = document.createElement("li");
     item.dataset.id = id;
     item.style.listStyleType = "none";
 
     let deleteButton = document.createElement("button");
+    deleteButton.classList.add("deleteButton");
     deleteButton.textContent = "X";
     deleteButton.onclick = async function() {
         await deleteDoc(doc(db, "alarms", id));
@@ -78,10 +79,61 @@ function displayAlarm(id, label, time, sinceMidnight) {
     let reminderLabel = document.createElement("span");
     reminderLabel.textContent = time + " | " + label;
 
+    let repeatButton = document.createElement("button");
+    repeatButton.classList.add("repeatButton");
+    repeatButton.textContent = '\u{1F501}';
+    if (repeat) {
+        repeatButton.classList.add("repeatOn");
+    } else {
+        repeatButton.classList.add("repeatOff");
+    }
+
+    let importantButton = document.createElement("button");
+    importantButton.classList.add("importantButton");
+    importantButton.textContent = '\u{26A0}\u{FE0F}';
+    if (important) {
+        importantButton.classList.add("importantOn");
+    } else {
+        importantButton.classList.add("importantOff");
+    }
 
     item.appendChild(deleteButton);
+    item.appendChild(repeatButton);
+    item.appendChild(importantButton);
     item.appendChild(reminderLabel);
     list.appendChild(item);
+
+    repeatButton.addEventListener("click", function() {
+        let button = repeatButton;
+        console.log("button clicked");
+            
+        if (button.classList.contains("repeatOn")) {
+            button.classList.remove("repeatOn");
+            button.classList.add("repeatOff");
+            updateDoc(doc(db, "alarms", id), { repeat: false });
+        } else {
+            button.classList.remove("repeatOff");
+            button.classList.add("repeatOn");
+            updateDoc(doc(db, "alarms", id), { repeat: true });
+        }
+    });
+
+    importantButton.addEventListener("click", function() {
+        let button = importantButton;
+        console.log("button clicked");
+        
+        if (button.classList.contains("importantOn")) {
+        button.classList.remove("importantOn");
+        button.classList.add("importantOff");
+            updateDoc(doc(db, "alarms", id), { important: false });
+        } else {
+            button.classList.remove("importantOff");
+            button.classList.add("importantOn");
+            updateDoc(doc(db, "alarms", id), { important: true });
+        }
+    });
+
+
 }
 
 
@@ -123,6 +175,9 @@ async function addAlarm() {
         label: label,
         time: hour + ":" + minute + " " + ampm,
         sinceMidnight: sinceMidnight,
+        important: false,
+        repeat: false,
+        timesActivated: 0,
         position: position
     });
 

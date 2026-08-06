@@ -46,7 +46,7 @@ body {
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
-    font-size: 10px;
+    font-size: 16px;
     cursor: pointer;
     margin-left: 0px;
     margin-right: -10px;
@@ -355,6 +355,38 @@ body {
     margin-top: 1px;
 }
 
+.alarmCard .repeatButton {
+    padding: 5px 5px;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-top: 1px;
+    margin-left: -6px;
+}
+
+.alarmCard .repeatOn{
+    background-color: #005504;
+}
+
+.alarmCard .repeatOff {
+    background-color: #3f1212;
+}
+
+.alarmCard .importantButton {
+    padding: 5px 5px;
+    font-size: 12px;
+    border-radius: 8px;
+    margin-top: 1px;
+    margin-left: -7px;
+}
+
+.alarmCard .importantOn {
+    background-color: #005504;
+}
+
+.alarmCard .importantOff {
+    background-color: #3f1212;
+}
+
 .alarmCard li {
     display: flex;
     align-items: center;
@@ -365,7 +397,7 @@ body {
 
 }
 
-.alarmCard li button:hover {
+.alarmCard li .deleteButton:hover {
     background-color: #e94560;
 }
 
@@ -544,6 +576,42 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+/* #endregion */
+
+/* #region Counter */
+
+.counterHeading{
+    display: flex;
+}
+
+.counterCard h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.counterCard .counterInput {
+    font-size: 20px;
+    margin-top: 15px;
+    color: #a0a0c0;
+}
+
+#counterCard {
+    background-color: #101F47;
+    border: 3px solid #2d3266;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    font-size: 20px;
+    color: #a0a0c0;
+    transition: transform 1.2s ease;
+}
+.counterCard p{
+    margin-top: 6px;
 }
 
 /* #endregion */
