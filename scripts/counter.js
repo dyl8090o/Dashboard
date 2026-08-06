@@ -13,7 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 let number = 0
-let activeCount = "count2";
+let activeCount = "count1";
 let counterListener = null;
 
 
