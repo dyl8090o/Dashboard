@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function (event) {
   const now = (new Date()).getTime();
+  lastTouchEnd = now;
   if (now - lastTouchEnd <= 300) {
     event.preventDefault();
-    lastTouchEnd = now;
   }
 }, { passive: false });
 
