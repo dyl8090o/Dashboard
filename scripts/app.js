@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getMessaging, getToken, } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPN115DDQYW8Sf6Cf5utDrvmO1yz7NcxA",
@@ -15,8 +15,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
-
 const db = getFirestore(app);
+const auth = getAuth(app)
+let provider = new GoogleAuthProvider();
+
+import { loadAlarms } from "./alarms.js";
+import { loadCountdowns } from "./countdown.js";
+import { loadReminders } from "./reminders.js";
+import { loadCounter } from "./counter.js";
+
+async function signIn() {
+    const result = await signInWithPopup(auth, provider)
+    const user = result.user
+}
 
 async function saveTokenToFirestore(token) {
     await setDoc(doc(db, "deviceTokens", token), {
@@ -65,6 +76,19 @@ document.addEventListener('touchend', function (event) {
     lastTouchEnd = now;
   }
 }, { passive: false });
+
+
+onAuthStateChanged(auth, (user) => {
+  if (user){
+    loadAlarms();
+    loadCountdowns();
+    loadReminders();
+    loadCounter();
+  } else {
+    document.getElementById("signInButton").classList.remove("hidden");
+  }
+});
+document.getElementById("signInButton").addEventListener("click", signIn);
 
 });
 

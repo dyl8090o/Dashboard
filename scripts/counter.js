@@ -20,17 +20,6 @@ let counterListener = null;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    counterListener = onSnapshot(doc(db, "counter", activeCount), (snapshot) => {
-        if (snapshot.exists()) {
-            number = snapshot.data().value;
-            document.getElementById("counter1").classList.add("selected");
-            document.getElementById("counterNumber").textContent = number;
-        } else {
-            console.log("No such document!");
-            document.getElementById("counterNumber").textContent = "ERROR";
-        }
-})
-
     document.getElementById("counterIncreaseButton").addEventListener("click", async () => {
 
         number += 1;
@@ -107,3 +96,19 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 })
+
+function loadCounter(){
+    if (counterListener) counterListener();
+    counterListener = onSnapshot(doc(db, "counter", activeCount), (snapshot) => {
+        if (snapshot.exists()) {
+            number = snapshot.data().value;
+            document.getElementById("counter1").classList.add("selected");
+            document.getElementById("counterNumber").textContent = number;
+        } else {
+            console.log("No such document!");
+            document.getElementById("counterNumber").textContent = "ERROR";
+        }
+    })
+}
+
+export { loadCounter };

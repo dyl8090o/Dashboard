@@ -207,9 +207,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    if(document.visibilityState === "visible") {
-        loadReminders();
-    }
 
     
     Sortable.create(document.getElementById("activeReminders"), {
@@ -219,3 +216,5 @@ document.addEventListener("DOMContentLoaded", function() {
 }});});
 
 document.getElementById("reminderCreateButton").onclick = addReminder;
+
+export { loadReminders };

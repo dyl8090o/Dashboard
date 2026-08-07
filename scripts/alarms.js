@@ -201,9 +201,6 @@ document.getElementById("alarmMinuteInput").addEventListener("input", function()
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    if(document.visibilityState === "visible") {
-        loadAlarms();
-    }
 
     document.getElementById("alarmAMPMButton").onclick = function() {
         let button = document.getElementById("alarmAMPMButton");
@@ -216,3 +213,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("alarmCreateButton").onclick = addAlarm;
+
+export { loadAlarms };

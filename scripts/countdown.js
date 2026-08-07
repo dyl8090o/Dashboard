@@ -299,9 +299,6 @@ document.getElementById("countdownSecondInput").addEventListener("input", functi
     if (this.value < 0) this.value = 0;
 });
 
-    if(document.visibilityState === "visible") {
-        loadCountdowns();
-    }
 
     document.getElementById("countdownAMPMButton").onclick = function() {
         let button = document.getElementById("countdownAMPMButton");
@@ -314,3 +311,6 @@ document.getElementById("countdownSecondInput").addEventListener("input", functi
 
     document.getElementById("countdownCreateButton").onclick = addCountdown;
 });
+
+
+export { loadCountdowns };
