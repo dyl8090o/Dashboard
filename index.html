@@ -25,7 +25,7 @@
 <body>
     
     <div class="header">
-        <p>Web app made by and for dyl8090o (debug 1)</p>
+        <p>Web app made by and for dyl8090o</p>
         <button id="enableNotifsButton" class="linkButton">N</button>
         <a href="https://trello.com/b/afgHf4SC/dashboard" id="trelloLink" class="link">T</a>
         <a href="https://github.com/dyl8090o/Dashboard" id="githubLink" class="link">GH</a>
@@ -159,17 +159,55 @@
 
                 <button id="counterIncreaseButton" class="counterButton">+</button>
             </div>
-            <button id="counterResetButton" class="counterResetButton">Reset</button>
+            <button id="counterResetButton" class="counterResetButton">Reset Counter</button>
             
             </div>
 
         </div>
+
+    </div>
+
+
+    <div class="unitCard" id="unitCard">
+        <div class="unitHeading">
+            <h1>Unit Converter</h1>
+        </div>
+
+        <div class="unitContent">
+
+            <div class="unitTopRow">
+                <select id="unitTypeSelect" class="unitTypeSelect" class="unitAnySelect">
+                    <option value="length">Length</option>
+                    <option value="weight">Weight</option>
+                    <option value="volume">Volume</option>
+                    <option value="temperature">Temperature</option>
+                    <option value="time">Time</option>
+                </select>
+            </div>
+
+            <div class="unitBottomRow">
+                <input type="number" id="unitInput" class="unitInput" placeholder="Enter value">
+                <select id="unitInputSelect" class="unitSelect" class="unitAnySelect">   
+                </select>
+
+                <p id="unitEquals">→</p>
+
+                <input type="any" id="unitOutput" class="unitInput" placeholder="Result" readonly>
+                <select id="unitOutputSelect" class="unitSelect" class="unitAnySelect">
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+        
 
     <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/reminders.js"></script>
     <script type="module" src="scripts/alarms.js"></script>
     <script type="module" src="scripts/countdown.js"></script>
     <script type="module" src="scripts/counter.js"></script>
+    <script type="module" src="scripts/unitConvert.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </body>
 </html>

@@ -701,6 +701,101 @@ body {
 
 /* #endregion */
 
+/* #region UnitConverter */
+
+.unitHeading{
+    display: flex;
+}
+
+.unitCard h1 {
+    font-size: 36px;
+    margin-bottom: 32px;
+    color: #ffffff;
+}
+
+#unitCard {
+    background-color: #101F47;
+    border: 3px solid #2d3266;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    font-size: 20px;
+    color: #a0a0c0;
+    transition: transform 1.2s ease;
+}
+.unitCard p{
+    margin-top: 6px;
+}
+
+.unitCard .unitContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.unitCard .unitTopRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.unitCard .unitBottomRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 0px;
+}
+
+.unitCard .unitTypeSelect {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #97a1b9;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 150%;
+    text-align: center;
+}
+
+.unitCard .unitInput {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-size: 16px;
+    width: 80%;
+}
+
+.unitCard .unitSelect {
+    background-color: #0f3460;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: #97a1b9;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 75%;
+    text-align: center;
+}
+
+.unitCard #unitEquals {
+    font-size: 32px;
+    color: #526185;
+    margin-bottom: 14px;
+}
+
+/* #endregion */
+
+
 /* #region Miscellaneous */
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -711,6 +806,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* #endregion */
@@ -772,6 +873,16 @@ input[type="number"] {
     .counterCard .counterSave:hover {
         background-color: rgb(20, 39, 102);
         transform: scale(1.05);
+    }
+
+    /* #endregion */
+
+    /* #region ButtonUnitConverter */
+
+    .unitCard select:hover {
+        background-color: #234b7c;
+        transform: scale(1.05);
+        box-shadow: 0 0 5px #2d3266;
     }
 
     /* #endregion */
