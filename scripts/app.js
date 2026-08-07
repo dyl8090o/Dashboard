@@ -79,7 +79,7 @@ document.addEventListener('touchend', function (event) {
 
 
 onAuthStateChanged(auth, (user) => {
-  if (user){
+  if (user && user.email === "dylnvista@gmail.com" || user && user.email === "2026210@lusd.org"){
     loadAlarms();
     loadCountdowns();
     loadReminders();
